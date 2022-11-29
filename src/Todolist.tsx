@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {filterValueType} from "./App";
 
 type PropsType = {
@@ -6,6 +6,7 @@ type PropsType = {
     tasks: tasksPropsType[]
     removeTask: (taskId: string) => void
     changeFilter:(value: filterValueType)=>void
+    addTask:()=> void
 }
 export type tasksPropsType = {
     id: string
@@ -13,13 +14,16 @@ export type tasksPropsType = {
     isDone: boolean
 }
 
+
 export const Todolist = (props: PropsType) => {
+    let [title, setTitle] = useState("")
+
     return (
         <div>
             <h3>{props.title}</h3>
             <div>
-                <input/>
-                <button>+</button>
+                <input value={title} onChange={(event)=>{setTitle(event.currentTarget.value)}}/>
+                <button onClick={()=>{props.addTask()}}>+</button>
             </div>
             <ul>
                 {props.tasks.map(el => <li key={el.id}>
