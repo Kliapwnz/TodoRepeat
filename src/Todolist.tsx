@@ -1,15 +1,14 @@
 import React from 'react';
-import {behaviorPlugin} from "@testing-library/user-event/dist/keyboard/types";
 import {filterValueType} from "./App";
 
 type PropsType = {
     title: string
     tasks: tasksPropsType[]
-    removeTask: (taskId: number) => void
+    removeTask: (taskId: string) => void
     changeFilter:(value: filterValueType)=>void
 }
 export type tasksPropsType = {
-    id: number
+    id: string
     title: string
     isDone: boolean
 }
