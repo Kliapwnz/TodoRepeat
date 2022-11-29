@@ -1,11 +1,14 @@
 import React from 'react';
+import {behaviorPlugin} from "@testing-library/user-event/dist/keyboard/types";
+import {filterValueType} from "./App";
 
 type PropsType = {
     title: string
     tasks: tasksPropsType[]
     removeTask: (taskId: number) => void
+    changeFilter:(value: filterValueType)=>void
 }
-type tasksPropsType = {
+export type tasksPropsType = {
     id: number
     title: string
     isDone: boolean
@@ -31,9 +34,9 @@ export const Todolist = (props: PropsType) => {
                 )}
             </ul>
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={()=>{props.changeFilter("all")}}>All</button>
+                <button onClick={()=>{props.changeFilter("active")}}>Active</button>
+                <button onClick={()=>{props.changeFilter("completed")}}>Completed</button>
             </div>
         </div>
     );
