@@ -6,7 +6,9 @@ function App() {
    const task1 =[
        {id:1, title:"Html&CSS", isDone: true },
        {id:2, title:"JS", isDone: false },
-       {id:3, title:"React", isDone: false }
+       {id:3, title:"React", isDone: false },
+       {id:4, title:"Football", isDone: true },
+       {id:5, title:"Hockey", isDone: false }
    ]
 
 
