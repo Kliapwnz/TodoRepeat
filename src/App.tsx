@@ -51,23 +51,33 @@ function App() {
     }
 
 
-    let tasksForTodolist = tasks;
+    // let tasksForTodolist = tasks;
+    //
+    // if (filter === "active") {
+    //     tasksForTodolist = tasks.filter(t => t.isDone === false);
+    // }
+    // if (filter === "completed") {
+    //     tasksForTodolist = tasks.filter(t => t.isDone === true);
+    // }
 
-    if (filter === "active") {
-        tasksForTodolist = tasks.filter(t => t.isDone === false);
-    }
-    if (filter === "completed") {
-        tasksForTodolist = tasks.filter(t => t.isDone === true);
-    }
-
-    function changeFilter(value: FilterValuesType) {
-        setFilter(value);
+    function changeFilter(todoListID:string ,value: FilterValuesType) {
+        // setFilter(value);
+        setTodoLists([...todoLists, todoLists.map((el)=>el.id===todoListID ? {...el,filter:value} :el)])
     }
 
 
     return (
         <div className="App">
             {todoLists.map((el) => {
+                let tasksForTodolist = tasks;
+
+                if (el.filter === "active") {
+                    tasksForTodolist = tasks.filter(t => t.isDone === false);
+                }
+                if (el.filter === "completed") {
+                    tasksForTodolist = tasks.filter(t => t.isDone === true);
+                }
+
                 return (
                     <Todolist
                         key={el.id}
