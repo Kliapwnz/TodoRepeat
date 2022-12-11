@@ -5,7 +5,20 @@ import {v1} from 'uuid';
 
 export type FilterValuesType = "all" | "active" | "completed";
 
+export type TodolistType = {
+    id: string
+    title: string
+    filter: FilterValuesType
+}
+
 function App() {
+
+    let [todoLists, setTodoLists] = useState<TodolistType[]>([
+            {id: v1(), title: "What to learn", filter: "all"},
+            {id: v1(), title: "What to buy", filter: "all"}
+        ]
+    )
+
 
     let [tasks, setTasks] = useState([
         {id: v1(), title: "HTML&CSS", isDone: true},
@@ -54,14 +67,21 @@ function App() {
 
     return (
         <div className="App">
-            <Todolist title="What to learn"
-                      tasks={tasksForTodolist}
-                      removeTask={removeTask}
-                      changeFilter={changeFilter}
-                      addTask={addTask}
-                      changeTaskStatus={changeStatus}
-                      filter={filter}
-            />
+            {todoLists.map((el) => {
+                return (
+                    <Todolist
+                        key={el.id}
+                        title={el.title}
+                        tasks={tasksForTodolist}
+                        removeTask={removeTask}
+                        changeFilter={changeFilter}
+                        addTask={addTask}
+                        changeTaskStatus={changeStatus}
+                        filter={el.filter}
+                    />
+                )
+            })}
+
         </div>
     );
 }
