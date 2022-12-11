@@ -60,9 +60,9 @@ function App() {
     //     tasksForTodolist = tasks.filter(t => t.isDone === true);
     // }
 
-    function changeFilter(todoListID:string ,value: FilterValuesType) {
+    function changeFilter(todoListID: string, value: FilterValuesType) {
         // setFilter(value);
-        setTodoLists([...todoLists, todoLists.map((el)=>el.id===todoListID ? {...el,filter:value} :el)])
+        setTodoLists(todoLists.map((el) => el.id === todoListID ? {...el, filter: value} : el))
     }
 
 
